@@ -587,6 +587,10 @@ public class Rules
     // this method creat the game cards
     private static void makeGameCards()
     {
+         // create instances of WildCardFactory and WildDrawCardFactory
+         CardFactory wildCardFactory = new WildCardFactory();
+         CardFactory wildDrawCardFactory = new WildDrawCardFactory();
+         
         // the code of the cards
         int cardCode = 0;
 
@@ -611,53 +615,46 @@ public class Rules
 
         // make wild cards
         for (int n = 0; n < 4; n++)
-            gameCards.add(new WildCard(++cardCode));
+            gameCards.add(wildCardFactory.createCard(0, null, ++cardCode)); // creating wild card by using wildCardFactory.createCard
 
         // make wild draw cards
         for (int n = 0; n < 4; n++)
-            gameCards.add(new WildDrawCard(++cardCode));
+            gameCards.add(wildDrawCardFactory.createCard(0, null, ++cardCode)); // creating wild draw card by calling createCard method of WildCardFactory
     }
 
 
     // this method creat the cards of the given color
     private static void makeCards(Color cardColor, int cardCode)
     {
-        // set the first set of cards
-        gameCards.add(new NumberCard(0, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(1, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(2, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(3, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(4, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(5, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(6, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(7, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(8, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(9, cardColor, ++cardCode));
+        // Create instances of the card factories
+        CardFactory numberCardFactory = new NumberCardFactory();
+        CardFactory draw2CardFactory = new Draw2CardFactory();
+        CardFactory reverseCardFactory = new ReverseCardFactory();
+        CardFactory skipCardFactory = new SkipCardFactory();
+
+        // set the first set of number cards using the factory
+        for (int i = 0; i <= 9; i++) {
+            gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
+        }
 
 
-        // set the second set of cards
-        gameCards.add(new NumberCard(1, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(2, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(3, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(4, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(5, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(6, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(7, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(8, cardColor, ++cardCode));
-        gameCards.add(new NumberCard(9, cardColor, ++cardCode));
+        // set the second set of number cards using rhe factory
+        for (int i = 1; i <= 9; i++) {
+            gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
+        }
             
 
-        // set the skip cards
-        gameCards.add(new SkipCard(cardColor, ++cardCode));
-        gameCards.add(new SkipCard(cardColor, ++cardCode));
+        // set the skip cards using its factory
+        gameCards.add(skipCardFactory.createCard(0, cardColor, ++cardCode));
+        gameCards.add(skipCardFactory.createCard(0, cardColor, ++cardCode));
 
-        // set the reverse cards
-        gameCards.add(new ReverseCard(cardColor, ++cardCode));
-        gameCards.add(new ReverseCard(cardColor, ++cardCode));
+        // set the reverse cards using its factory
+        gameCards.add(reverseCardFactory.createCard(0, cardColor, ++cardCode));
+        gameCards.add(reverseCardFactory.createCard(0, cardColor, ++cardCode));
 
-        // set the draw2 cards
-        gameCards.add(new Draw2Card(cardColor, ++cardCode));
-        gameCards.add(new Draw2Card(cardColor, ++cardCode));
+        // set the draw 2 cards using its factory
+        gameCards.add(draw2CardFactory.createCard(0, cardColor, ++cardCode));
+        gameCards.add(draw2CardFactory.createCard(0, cardColor, ++cardCode));
     }
 
 
