@@ -91,7 +91,12 @@ public class Run
 
                     
                             // creat new player
-                            Rules.addPlayer(new Player(newPlayerName, newPlayerPass));
+                            PlayerBuilder builder = new ConcretePlayerBuilder();
+                            PlayerDirector director = new PlayerDirector();
+                            Player player = director.constructPlayer(builder.buildFirstName(newPlayerName)
+                                    .buildPassword(newPlayerPass));
+
+                            Rules.addPlayer(player);
                         }
                     }
 
