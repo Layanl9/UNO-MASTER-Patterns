@@ -92,9 +92,19 @@ public class Player extends Person
     {
         return playerCards.size();
     }
+            
+  // setter methods *****************************
+    public void setScore(int score) {
+        this.score = score;
+    }
 
+    public void setPlayerPass(String playerPass) {
+        this.playerPass = playerPass;
+    }
 
-
+    public void setPlayerCards(ArrayList<Card> playerCards) {
+        this.playerCards = playerCards;
+    }
 
 
     /**
@@ -127,8 +137,10 @@ public class Player extends Person
             }
         } 
 
-        score -= cardToRemove.getCardScore();
-        playerCards.remove(cardToRemove);
+        if (cardToRemove != null) {
+            score -= cardToRemove.getCardScore();
+            playerCards.remove(cardToRemove);
+        }
 
         return cardToRemove;
     }
