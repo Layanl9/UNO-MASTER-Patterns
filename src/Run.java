@@ -81,7 +81,7 @@ public class Run
                         if (newPlayerName.toLowerCase().equals("bot"))
                         {
                             // creat a bot
-                            Rules.addPlayer(new Bot(n));
+                            GameCreation.addPlayer(new Bot(n));
                         }
                         else 
                         {
@@ -96,20 +96,20 @@ public class Run
                             Player player = director.constructPlayer(builder.buildFirstName(newPlayerName)
                                     .buildPassword(newPlayerPass));
 
-                            Rules.addPlayer(player);
+                                    GameCreation.addPlayer(player);
                         }
                     }
 
                     
                     // get the cards to the players
-                    Rules.preparationGameCards();
-                    Rules.distributeCards();
+                    GameCreation.preparationGameCards();
+                    GameCreation.distributeCards();
 
                     // run the game
-                    Rules.runGame(inputs);
+                    GameCreation.runGame(inputs);
 
                     // reset the game
-                    Rules.reset();
+                    GameCreation.reset();
 
                 break;
 

@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author Mohammad Mahdi Malmasi
  * @version 0.1.5
  */
-public class Rules 
+public class GameCreation 
 {
             /* Feilds */
 
