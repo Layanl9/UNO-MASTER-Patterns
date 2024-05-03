@@ -43,7 +43,7 @@ public class Bot extends Player
         for (int n = 0; n < super.getPlayerCards().size(); n++)
         {
             botChoosenCard = super.getPlayerCards().get(n);
-            if (Rules.checkChoose(botChoosenCard, this))
+            if (GameCreation.checkChoose(botChoosenCard, this))
             {
                 this.getPlayerCards().remove(botChoosenCard);
                 score -= botChoosenCard.getCardScore();
@@ -59,24 +59,24 @@ public class Bot extends Player
             switch (rand.nextInt(4)+1)
             {
                 case 1:
-                    Rules.applyChoose(botChoosenCard, Color.RED);
+                GameCreation.applyChoose(botChoosenCard, Color.RED);
                 break;
 
                 case 2:
-                    Rules.applyChoose(botChoosenCard, Color.YELLOW);
+                GameCreation.applyChoose(botChoosenCard, Color.YELLOW);
                 break;
 
                 case 3:
-                    Rules.applyChoose(botChoosenCard, Color.GREEN);
+                GameCreation.applyChoose(botChoosenCard, Color.GREEN);
                 break;
 
                 case 4:
-                    Rules.applyChoose(botChoosenCard, Color.BLUE);
+                GameCreation.applyChoose(botChoosenCard, Color.BLUE);
                 break;
             }
         }
         else
-            Rules.applyChoose(botChoosenCard, botChoosenCard.getCardColor());
+        GameCreation.applyChoose(botChoosenCard, botChoosenCard.getCardColor());
 
         
 
