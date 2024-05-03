@@ -627,22 +627,31 @@ public class GameCreation
     private static void makeCards(Color cardColor, int cardCode)
     {
         // Create instances of the card factories
-        CardFactory numberCardFactory = new NumberCardFactory();
+        //CardFactory numberCardFactory = new NumberCardFactory();
         CardFactory draw2CardFactory = new Draw2CardFactory();
         CardFactory reverseCardFactory = new ReverseCardFactory();
         CardFactory skipCardFactory = new SkipCardFactory();
 
         // set the first set of number cards using the factory
-        for (int i = 0; i <= 9; i++) {
-            gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
-        }
+        // for (int i = 0; i <= 9; i++) {
+        //     gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
+        // }
 
 
         // set the second set of number cards using rhe factory
-        for (int i = 1; i <= 9; i++) {
-            gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
+        // for (int i = 1; i <= 9; i++) {
+        //     gameCards.add(numberCardFactory.createCard(i, cardColor, ++cardCode));
+        // }
+        
+        // instance of NumberCardFlyWeight
+        CardFactory numberCardFlyweight = new NumberCardFlyweight();
+        // create number cards and reuse existing instances (FlyWeight pattern)
+        for (int i = 0; i <= 9; i++) {
+            gameCards.add(numberCardFlyweight.createCard(i, cardColor, ++cardCode));
         }
-            
+        for (int i = 1; i <= 9; i++) {
+            gameCards.add(numberCardFlyweight.createCard(i, cardColor, ++cardCode));
+        }
 
         // set the skip cards using its factory
         gameCards.add(skipCardFactory.createCard(0, cardColor, ++cardCode));
