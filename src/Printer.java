@@ -113,11 +113,14 @@ public class Printer
      */
     public static void getPassToStartTurn(Player player)
     {
+        // used the decorator !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Person redBackground = new RedBackgroundDecorator(player);
+
         clear();
 
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print(Color.getColorCodeString(Color.RESET) + "\t\t  " +
-                    "Hey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +  player.getFirstName() + 
+                    "Hey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +  redBackground.getFirstName() + 
                                 Color.getColorCodeString(Color.RESET) + 
                             " it's your turn. enter your pass to continue: ");
     }
@@ -182,7 +185,10 @@ public class Printer
         int cntr = 0;
         for (Player player: players)
         {
-            System.out.print("\t " + player.getFirstName() + ":  " + player.getNumberOfPlayerCards());
+            // used the decorator !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Person blueText = new BlueTextDecorator(player);
+
+            System.out.print("\t " + blueText.getFirstName() + ":  " + player.getNumberOfPlayerCards());
 
             if (cntr == 0 && (currentPlayerIndex == (players.size()-1)))
                 System.out.print("\t---> (next player)");
@@ -237,8 +243,11 @@ public class Printer
      */
     public static void getPlayerChoice(Player player)
     {
+        // used the decorator !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Person redBackground = new RedBackgroundDecorator(player);
+
         System.out.print("\nhey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
-                            player.getFirstName() + Color.getColorCodeString(Color.RESET) +
+                                redBackground.getFirstName() + Color.getColorCodeString(Color.RESET) +
                                 " choose a Card (enter the code of your choosen card):  ");
     }
 
