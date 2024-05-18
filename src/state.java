@@ -1,5 +1,3 @@
-public interface state {
-    void handleEndGame();
+public interface State {
+    void handleGame(StateContext context);
 }
-
-
