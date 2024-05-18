@@ -1,22 +1,16 @@
 public class StateContext {
-    private state state;
+    private State state;
 
     public StateContext() {
         state = new RunningState(); // Initial state
     }
 
-    public void setState(state state) {
+    public void setState(State state) {
         this.state = state;
     }
 
-    public state getState() {
+    public State getState() {
         return state;
     }
 
-    public void endGame() {
-        if (!(state instanceof EndState)) {
-            state = new EndState();
-            state.handleEndGame();
-        }
-    }
 }

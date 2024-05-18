@@ -345,9 +345,16 @@ public class GameCreation
 
                     // check player choice
                     if (holdInput.equalsIgnoreCase("End")) {
-                        context.endGame();
-                        return;
-                    } else if (holdInput.length() > 0 && holdInput.length() < 4 && isInt(holdInput))
+                        EndState endGame = new EndState();
+                        endGame.handleGame(context);
+                        //context.endGame();
+                        //return;
+                    } 
+                    else if(holdInput.equalsIgnoreCase("restart")){
+                        RestartGameState restart = new RestartGameState();
+                        restart.handleGame(context);
+                    }
+                    else if (holdInput.length() > 0 && holdInput.length() < 4 && isInt(holdInput))
                         if (Integer.valueOf(holdInput) <= 108 && Integer.valueOf(holdInput) > 0)
                             if (currentPlayer.haveCard(Integer.valueOf(holdInput)))
                                 break;

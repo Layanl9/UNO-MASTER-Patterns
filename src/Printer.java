@@ -243,9 +243,11 @@ public class Printer
         // used the decorator !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Person redBackground = new RedBackgroundDecorator(player);
 
-        System.out.print("\nhey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
+        System.out.print("\nHey " + Color.getColorCodeString(Color.BLACK_BRIGHT_B) +
                                 redBackground.getFirstName() + Color.getColorCodeString(Color.RESET) +
-                                " choose a Card (enter the code of your choosen card):  ");
+                                " choose a Card (enter the code of your choosen card)..  "
+                                + "\nType 'END' to exit game or 'RESTART' to start again.." 
+                                + "\nYour choice: ");
     }
 
 

@@ -1,7 +1,7 @@
-public class RunningState implements state {
+public class RunningState implements State {
     @Override
-    public void handleEndGame() {
-        System.out.println("Cannot handle end game in running state.");
+    public void handleGame(StateContext context) {
+        System.out.println("Running State.");
     }
 
     @Override

@@ -1,22 +1,21 @@
 import java.util.Scanner;
 
-
-
 /**
  * The main class of the game.
- * This game designed for UNIX bash !. 
+ * This game designed for UNIX bash !.
  * (may not work on windows)
  * 
  * @author Mohammad Mahdi Malmasi
- * @version 0.1.0 
+ * @version 0.1.0
  */
-public class Run 
-{
+public class Run {
     // for get the players inputs
     private static Scanner inputs = new Scanner(System.in);
+
     private static ColorStrategy getUserColorChoice() {
-        Scanner input = new Scanner(System.in);
-    
+        //Scanner input = new Scanner(System.in);
+
+        System.out.print("\n\n\n\n\n\n\n\n");
         System.out.println("Please choose the menu text color:");
         System.out.println("1. Black");
         System.out.println("2. Red");
@@ -24,9 +23,9 @@ public class Run
         System.out.println("4. Green");
         System.out.println("5. Blue");
         System.out.println("6. White");
-    
+
         while (true) {
-            String choice = input.nextLine();
+            String choice = inputs.nextLine();
             switch (choice) {
                 case "1":
                     return new BlackColorStrategy();
@@ -46,36 +45,31 @@ public class Run
         }
     }
 
- 
+    public static void main(String[] args) {
+        playUNO();
+    }
 
+    public static void playUNO(){
+        // Create a ColorContext instance
+        ColorContext colorContext = new ColorContext();
 
-    public static void main(String[] args) 
-    {
-         // Create a ColorContext instance
-    ColorContext colorContext = new ColorContext();
+        // Get user's color choice
+        ColorStrategy userColorChoice = getUserColorChoice();
 
-    // Get user's color choice
-    ColorStrategy userColorChoice = getUserColorChoice();
-
-    // Set the color strategy in the ColorContext
-    colorContext.setColorStrategy(userColorChoice);
+        // Set the color strategy in the ColorContext
+        colorContext.setColorStrategy(userColorChoice);
         // calibrate the font size of the terminal
         Printer.calibrate(inputs);
 
-
-
-        //  * required variables *
+        // * required variables *
         String holdInput; // hold the input to check that its valid or not
         int numberOfPlayers; // the number of the game players
         String newPlayerName, newPlayerPass; // get the new player details
-        
 
-        // while player choose exit option 
-        while (true)
-        {
+        // while player choose exit option
+        while (true) {
             // while player choose valid option
-            while (true)
-            {
+            while (true) {
                 // show the game menu tho the player and get his/her choice
                 Printer.printMenu(colorContext);
                 holdInput = inputs.nextLine();
@@ -83,18 +77,15 @@ public class Run
                 // check the player input
                 if (holdInput.length() == 1 && (holdInput.charAt(0) == '1' || holdInput.charAt(0) == '2'))
                     break;
-                else 
+                else
                     Printer.inValidInputError(inputs);
             }
 
-
-            switch (holdInput)
-            {
+            switch (holdInput) {
                 case "1":
 
                     // while the plahyer choose a valid int
-                    while (true)
-                    {
+                    while (true) {
                         // get the player choice
                         Printer.getNumberOfThePlayers();
                         holdInput = inputs.nextLine();
@@ -102,45 +93,37 @@ public class Run
                         // check the player input
                         if (holdInput.length() == 1 && holdInput.charAt(0) > '0' && holdInput.charAt(0) < '8')
                             break;
-                        else 
+                        else
                             Printer.inValidInputError(inputs);
                     }
 
-
                     // set the number of the players
-                    numberOfPlayers = (int)holdInput.charAt(0) - (int)'0';
+                    numberOfPlayers = (int) holdInput.charAt(0) - (int) '0';
 
                     // get the players detials
-                    for (int n = 0; n < numberOfPlayers; n++)
-                    {
+                    for (int n = 0; n < numberOfPlayers; n++) {
                         // get the player name
-                        Printer.getPlayerName(n+1);
+                        Printer.getPlayerName(n + 1);
                         newPlayerName = inputs.nextLine();
 
-
-                        if (newPlayerName.toLowerCase().equals("bot"))
-                        {
+                        if (newPlayerName.toLowerCase().equals("bot")) {
                             // creat a bot
                             GameCreation.addPlayer(new Bot(n));
-                        }
-                        else 
-                        {
+                        } else {
                             // get the player password
                             Printer.getPlayerPass(newPlayerName);
                             newPlayerPass = inputs.nextLine();
 
-                    
                             // creat new player
                             PlayerBuilder builder = new ConcretePlayerBuilder();
                             PlayerDirector director = new PlayerDirector();
                             Player player = director.constructPlayer(builder.buildFirstName(newPlayerName)
                                     .buildPassword(newPlayerPass));
 
-                                    GameCreation.addPlayer(player);
+                            GameCreation.addPlayer(player);
                         }
                     }
 
-                    
                     // get the cards to the players
                     GameCreation.preparationGameCards();
                     GameCreation.distributeCards();
@@ -151,10 +134,11 @@ public class Run
                     // reset the game
                     GameCreation.reset();
 
-                break;
+                    break;
 
                 case "2":
-                    return;
+                    //return;
+                    System.exit(0); // Terminate the JVM
             }
         }
     }
