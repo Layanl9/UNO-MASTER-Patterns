@@ -45,20 +45,17 @@ public class Printer
     /**
      * This method print the game menu
      */
-    public static void printMenu()
-    {
+  public static void printMenu(ColorContext colorContext) {
         clear();
-        System.out.println(Color.getColorCodeString(Color.RESET));
-
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(INDENT + "\t       " + "🃏 <@••••••. UNO Game .••••••@> 🀄️");
         System.out.print("\n\n");
-        System.out.println(INDENT + "\t      " + "            1. New game");
+        System.out.println(colorContext.getColorCodeString() + INDENT + "\t      " + "            1. New game");
         System.out.print("\n");
-        System.out.println(INDENT + "\t      " + "              2. exit");
-        System.err.println(INDENT + "\t       " + "🀄️ <@••••••••••••••••••••••••@> 🃏");
+        System.out.println(colorContext.getColorCodeString() + INDENT + "\t      " + "              2. exit");
+        System.err.println(colorContext.getColorCodeString() + INDENT + "\t       " + "🀄️ <@••••••••••••••••••••••••@> 🃏");
         System.out.print("\n\n");
-        System.out.print(  INDENT + "\t      " + "                0_0? ");
+        System.out.print(colorContext.getColorCodeString() + INDENT + "\t      " + "                0_0? ");
     }  
     
 
