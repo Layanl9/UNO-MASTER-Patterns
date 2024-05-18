@@ -17,7 +17,7 @@ public class Run
     private static ColorStrategy getUserColorChoice() {
         Scanner input = new Scanner(System.in);
     
-        System.out.println("Please select a color option:");
+        System.out.println("Please choose the menu text color:");
         System.out.println("1. Black");
         System.out.println("2. Red");
         System.out.println("3. Yellow");
