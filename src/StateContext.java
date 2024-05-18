@@ -1,15 +1,15 @@
 public class StateContext {
-    private State state;
+    private GameState state;
 
     public StateContext() {
         state = new RunningState(); // Initial state
     }
 
-    public void setState(State state) {
+    public void setState(GameState state) {
         this.state = state;
     }
 
-    public State getState() {
+    public GameState getState() {
         return state;
     }
 

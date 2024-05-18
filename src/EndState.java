@@ -1,4 +1,4 @@
-public class EndState implements State {
+public class EndState implements GameState {
     @Override
     public void handleGame(StateContext context) {
         System.out.println("Game has ended. Thank you for playing!");

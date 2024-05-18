@@ -1,4 +1,4 @@
-public class RestartGameState implements State{
+public class RestartGameState implements GameState{
     @Override
     public void handleGame(StateContext context){
         context.setState(this);

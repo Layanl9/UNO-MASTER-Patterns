@@ -1,4 +1,4 @@
-public class RunningState implements State {
+public class RunningState implements GameState {
     @Override
     public void handleGame(StateContext context) {
         System.out.println("Running State.");
