@@ -14,11 +14,51 @@ public class Run
 {
     // for get the players inputs
     private static Scanner inputs = new Scanner(System.in);
+    private static ColorStrategy getUserColorChoice() {
+        Scanner input = new Scanner(System.in);
+    
+        System.out.println("Please select a color option:");
+        System.out.println("1. Black");
+        System.out.println("2. Red");
+        System.out.println("3. Yellow");
+        System.out.println("4. Green");
+        System.out.println("5. Blue");
+        System.out.println("6. White");
+    
+        while (true) {
+            String choice = input.nextLine();
+            switch (choice) {
+                case "1":
+                    return new BlackColorStrategy();
+                case "2":
+                    return new RedColorStrategy();
+                case "3":
+                    return new YellowColorStrategy();
+                case "4":
+                    return new GreenColorStrategy();
+                case "5":
+                    return new BlueColorStrategy();
+                case "6":
+                    return new WhiteColorStrategy();
+                default:
+                    System.out.println("Invalid input. Please try again.");
+            }
+        }
+    }
+
  
 
 
     public static void main(String[] args) 
     {
+         // Create a ColorContext instance
+    ColorContext colorContext = new ColorContext();
+
+    // Get user's color choice
+    ColorStrategy userColorChoice = getUserColorChoice();
+
+    // Set the color strategy in the ColorContext
+    colorContext.setColorStrategy(userColorChoice);
         // calibrate the font size of the terminal
         Printer.calibrate(inputs);
 
@@ -37,7 +77,7 @@ public class Run
             while (true)
             {
                 // show the game menu tho the player and get his/her choice
-                Printer.printMenu();
+                Printer.printMenu(colorContext);
                 holdInput = inputs.nextLine();
 
                 // check the player input
