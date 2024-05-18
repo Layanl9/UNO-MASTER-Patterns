@@ -28,6 +28,9 @@ public class GameCreation
 
     // hold the penalty cards
     private static ArrayList<Card> penaltyCards = new ArrayList<>();
+    
+    private static StateContext context = new StateContext();
+            
 
 
 
@@ -337,11 +340,15 @@ public class GameCreation
                     // ask the player choice
                     Printer.getPlayerChoice(currentPlayer);
                     holdInput = inputs.nextLine();
+                    context.setState(new RunningState());
 
 
                     // check player choice
-                    if (holdInput.length() > 0 && holdInput.length() < 4 && isInt(holdInput))
-                        if (Integer.valueOf(holdInput) <= 108  &&  Integer.valueOf(holdInput) > 0)
+                    if (holdInput.equalsIgnoreCase("End")) {
+                        context.endGame();
+                        return;
+                    } else if (holdInput.length() > 0 && holdInput.length() < 4 && isInt(holdInput))
+                        if (Integer.valueOf(holdInput) <= 108 && Integer.valueOf(holdInput) > 0)
                             if (currentPlayer.haveCard(Integer.valueOf(holdInput)))
                                 break;
                 
@@ -365,6 +372,7 @@ public class GameCreation
                             // ask the player choosen color
                             Printer.getPlayerChoosenColor();
                             holdInput = inputs.nextLine();
+                            
 
                             // check the player input
                             if (holdInput.length() == 1 && holdInput.charAt(0) > '0' && holdInput.charAt(0) < '5')
